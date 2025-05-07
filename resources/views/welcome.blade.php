@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'TradeX') }}</title>
+        <title>TradeX</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,8 +15,32 @@
         </style>
 
         <style>
-            body {
-                font-family: 'Nunito', sans-serif;
+            body { font-family: 'Nunito', sans-serif; background: #eaf1fb; }
+            .hero-title { font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; }
+            .hero-highlight { color: #2563eb; }
+            .btn-blue { background: #2563eb; color: #fff; border-radius: 0.5rem; padding: 0.75rem 2.5rem; font-weight: 700; font-size: 1.25rem; transition: background 0.2s; }
+            .btn-blue:hover { background: #1d4ed8; }
+            .btn-outline { background: #fff; color: #111; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem 2.5rem; font-weight: 700; font-size: 1.25rem; transition: background 0.2s; }
+            .btn-outline:hover { background: #f3f4f6; }
+            .nav-link { font-weight: 600; color: #bfcbe2; margin: 0 1.5rem; transition: color 0.2s; }
+            .nav-link:hover { color: #2563eb; }
+            .nav-link.active { color: #2563eb; }
+            .dashboard-card { background: #fff; border-radius: 1.5rem; box-shadow: 0 4px 32px 0 #bfcbe2; padding: 2.5rem 2rem 2rem 2rem; margin-top: 3rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+            .dashboard-header { display: flex; align-items: center; font-weight: 700; font-size: 1.1rem; margin-bottom: 1.5rem; }
+            .dot { height: 0.75rem; width: 0.75rem; border-radius: 9999px; display: inline-block; margin-right: 0.3rem; }
+            .dot-red { background: #f87171; }
+            .dot-yellow { background: #fbbf24; }
+            .dot-green { background: #34d399; }
+            .dashboard-content { display: flex; gap: 2rem; }
+            .dashboard-panel { background: #23293a; border-radius: 1rem; flex: 1; padding: 2rem 1.5rem; color: #fff; min-width: 0; }
+            .dashboard-panel .label { color: #bfcbe2; font-size: 1rem; margin-bottom: 0.5rem; }
+            .dashboard-panel .value { font-size: 2.2rem; font-weight: 800; }
+            .dashboard-panel .change { color: #34d399; font-weight: 700; margin-top: 0.5rem; }
+            .market-row { display: flex; justify-content: space-between; margin-bottom: 0.3rem; font-size: 1.1rem; }
+            .market-row .red { color: #f87171; }
+            .market-row .green { color: #34d399; }
+            @media (max-width: 900px) {
+                .dashboard-content { flex-direction: column; gap: 1.5rem; }
             }
         </style>
 
@@ -25,29 +49,16 @@
     <body class="antialiased">
         <div class="relative min-h-screen bg-gray-100">
             <!-- Navigation -->
-            <nav class="bg-white shadow-lg">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
-                            <div class="flex-shrink-0 flex items-center">
-                                <h1 class="text-2xl font-bold text-indigo-600">TradeX</h1>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            @if (Route::has('login'))
-                                <div class="space-x-4">
-                                    @auth
-                                        <a href="{{ url('/dashboard') }}" class="text-gray-700 hover:text-gray-900">Dashboard</a>
-                                    @else
-                                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900">Log in</a>
-                                        @if (Route::has('register'))
-                                            <a href="{{ route('register') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Register</a>
-                                        @endif
-                                    @endauth
-                                </div>
-                            @endif
-                        </div>
-                    </div>
+            <nav class="flex justify-between items-center max-w-7xl mx-auto py-6 px-4">
+                <div class="text-2xl font-extrabold" style="color:#2563eb;">TradeX</div>
+                <div class="flex gap-8 items-center">
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#about" class="nav-link">About</a>
+                </div>
+                <div class="flex gap-2">
+                    <a href="{{ route('login') }}" class="btn-outline" style="font-size:1rem;padding:0.5rem 1.5rem;">Log in</a>
+                    <a href="{{ route('register') }}" class="btn-blue" style="font-size:1rem;padding:0.5rem 1.5rem;">Sign up</a>
                 </div>
             </nav>
 
@@ -69,6 +80,96 @@
                     </div>
                 </div>
             </div>
+
+            <section id="features" class="py-20" style="background: #f6f8fb;">
+                <h2 class="text-4xl font-extrabold text-center mb-4">Powerful Trading Features</h2>
+                <p class="text-center text-xl text-gray-500 mb-12">Everything you need to analyze markets and make informed decisions</p>
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="feature-card">
+                        <h3 class="text-2xl font-bold mb-2">Real-time Data</h3>
+                        <p>Stay updated with real-time market data from global exchanges. Make timely decisions with second-by-second updates.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="text-2xl font-bold mb-2">Historical Analysis</h3>
+                        <p>Access years of historical data to analyze patterns, trends, and seasonal behaviors to inform your trading strategy.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="text-2xl font-bold mb-2">Daily Summaries</h3>
+                        <p>Get comprehensive end-of-day market summaries with key insights into the day's trading activity.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="text-2xl font-bold mb-2">Advanced Charting</h3>
+                        <p>Visualize market data with powerful charting tools featuring multiple timeframes and technical indicators.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="text-2xl font-bold mb-2">Custom Watchlists</h3>
+                        <p>Create and monitor personalized watchlists to keep track of your favorite markets and securities.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="text-2xl font-bold mb-2">Mobile Access</h3>
+                        <p>Access your trading dashboard from anywhere with our responsive mobile experience.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="pricing" class="py-20 bg-blue-50">
+                <h2 class="text-4xl font-extrabold text-center mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-center text-xl text-gray-500 mb-12">Choose the plan that's right for your trading needs</p>
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="pricing-card">
+                        <h3 class="text-2xl font-bold mb-2">Basic</h3>
+                        <p class="text-gray-500 mb-4">For casual investors</p>
+                        <div class="text-4xl font-extrabold mb-2">$0<span class="text-lg font-normal">/month</span></div>
+                        <ul class="mb-6 text-gray-700">
+                            <li>✔ Delayed market data</li>
+                            <li>✔ Basic charts</li>
+                            <li>✔ 1 watchlist</li>
+                        </ul>
+                        <a href="{{ route('register') }}" class="btn-outline w-full block text-center">Sign Up Free</a>
+                    </div>
+                    <div class="pricing-card active" style="border-color:#2563eb;">
+                        <h3 class="text-2xl font-bold mb-2">Pro</h3>
+                        <p class="text-gray-500 mb-4">For active traders</p>
+                        <div class="text-4xl font-extrabold mb-2">$29<span class="text-lg font-normal">/month</span></div>
+                        <ul class="mb-6 text-gray-700">
+                            <li>✔ Real-time market data</li>
+                            <li>✔ Advanced charts & indicators</li>
+                            <li>✔ 10 watchlists</li>
+                            <li>✔ Historical data (5 years)</li>
+                        </ul>
+                        <a href="{{ route('register') }}" class="btn-blue w-full block text-center">Start Pro Trial</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+                        <p class="text-gray-500 mb-4">For institutions</p>
+                        <div class="text-4xl font-extrabold mb-2">$99<span class="text-lg font-normal">/month</span></div>
+                        <ul class="mb-6 text-gray-700">
+                            <li>✔ Premium real-time data</li>
+                            <li>✔ All technical indicators</li>
+                            <li>✔ Unlimited watchlists</li>
+                            <li>✔ Historical data (20+ years)</li>
+                            <li>✔ API access</li>
+                        </ul>
+                        <a href="#contact" class="btn-outline w-full block text-center">Contact Sales</a>
+                    </div>
+                </div>
+            </section>
+            <section id="about" class="py-20" style="background: #f6f8fb;">
+                <h2 class="text-4xl font-extrabold text-center mb-2">About TradeX</h2>
+                <p class="text-center text-2xl text-gray-400 mb-12">Designed by traders, for traders</p>
+                <div class="max-w-3xl mx-auto text-lg text-gray-900 mb-20" style="line-height:2;">
+                    TradeX was founded by a team of financial analysts, data scientists, and traders who recognized the need for a more accessible and powerful trading data platform.<br>
+                    Our mission is to provide traders and investors of all levels with the tools and data they need to make informed decisions in the market, without the complexity and high costs typically associated with professional trading platforms.<br>
+                    With TradeX, you get reliable, real-time market data combined with intuitive visualization tools and comprehensive historical analysis capabilities, all accessible through a clean, modern interface.<br>
+                    Whether you're a day trader, swing trader, or long-term investor, TradeX provides the insights you need when you need them.
+                </div>
+            </section>
+            <section class="py-20 bg-white">
+                <div class="text-center">
+                    <h2 class="text-4xl font-extrabold mb-4">Ready to Elevate Your Trading?</h2>
+                    <p class="text-xl text-gray-500 mb-8">Join thousands of traders who trust TradeX for market insights.</p>
+                    <a href="{{ route('register') }}" class="btn-blue text-xl">Create Your Account</a>
+                </div>
+            </section>
         </div>
     </body>
 </html>
