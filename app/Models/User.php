@@ -40,5 +40,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        // 'password' => 'hashed', // Removed for Laravel 9 compatibility
     ];
+
+    public function watchlists()
+    {
+        return $this->hasMany(Watchlist::class);
+    }
 }

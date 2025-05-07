@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'alphavantage' => [
+        'key' => env('ALPHA_VANTAGE_API_KEY'),
+    ],
+
 ];
