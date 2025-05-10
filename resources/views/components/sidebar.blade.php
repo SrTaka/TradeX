@@ -1,10 +1,10 @@
 @props(['active'])
 
-<aside class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 pt-16">
-    <div class="h-full px-3 py-4 overflow-y-auto">
+<aside x-show="sidebarOpen" @keydown.window.escape="sidebarOpen = false" class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 pt-16 z-20 transform transition-transform duration-200 ease-in-out translate-x-0 md:translate-x-0 md:block shadow-xl rounded-r-2xl" :class="{'-translate-x-full': !sidebarOpen, 'block': sidebarOpen, 'md:block': true}" x-cloak>
+    <div class="h-full px-5 py-6 overflow-y-auto">
         <ul class="space-y-2">
             <li>
-                <a href="{{ route('dashboard') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 {{ request()->routeIs('dashboard') ? 'bg-gray-100' : '' }}">
+                <a href="{{ route('dashboard') }}" class="flex items-center p-3 text-gray-900 rounded-xl hover:bg-blue-50 transition {{ request()->routeIs('dashboard') ? 'bg-blue-100 text-blue-700 font-bold shadow' : '' }}">
                     <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                     </svg>
@@ -70,3 +70,6 @@
         </ul>
     </div>
 </aside>
+
+<!-- Mobile backdrop -->
+<div x-show="sidebarOpen" class="fixed inset-0 bg-black bg-opacity-50 z-10 md:hidden" @click="sidebarOpen = false" x-cloak></div>

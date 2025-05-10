@@ -10,6 +10,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -21,14 +22,14 @@
         <!-- Chart.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased" x-data="{ sidebarOpen: false }" style="font-family: 'Nunito', sans-serif; background: #eaf1fb;">
+        <div class="min-h-screen" style="background: #eaf1fb;">
             @include('layouts.navigation')
             
             <!-- Sidebar -->
             <x-sidebar />
 
-            <div class="pl-64 pt-16"> <!-- Add padding to account for sidebar width and fixed navigation -->
+            <div class="pt-16 pl-0 md:pl-64 min-h-screen transition-all duration-200">
                 <!-- Page Heading -->
                 @if (isset($header))
                     <header class="bg-white shadow">
