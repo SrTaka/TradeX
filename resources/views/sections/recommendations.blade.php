@@ -1,13 +1,13 @@
-{{-- resources/views/components/stocks/stock-card.blade.php --}}
+{{-- Stock Card Component --}}
 <div class="card">
     <div class="card-header">
         <h3 class="card-title font-semibold">{{ $symbol }}</h3>
-        <p class="text-sm text-muted-foreground">{{ <span class="math-inline">name \}\}</p\>
-</div\>
-<div class\="card\-content"\>
-<div class\="text\-2xl font\-bold text\-zimstock\-blue"\></span>{{ number_format($price, 2) }}</div>
+        <p class="text-sm text-muted-foreground">{{ $name }}</p>
+    </div>
+    <div class="card-content">
+        <div class="text-2xl font-bold text-zimstock-blue">{{ number_format($price, 2) }}</div>
         <div class="flex items-center text-sm mt-1 {{ $change >= 0 ? 'text-green-500' : 'text-red-500' }}">
-            {{ <span class="math-inline">change \>\= 0 ? '\+' \: '\-' \}\}</span>{{ number_format(abs($change), 2) }} ({{ number_format(abs($changePercent), 2) }}%)
+            {{ $change >= 0 ? '+' : '-' }}{{ number_format(abs($change), 2) }} ({{ number_format(abs($changePercent), 2) }}%)
         </div>
         @isset($dividend)
             <div class="text-sm text-muted-foreground mt-1">Dividend Yield: {{ $dividend }}</div>
@@ -18,59 +18,55 @@
     </div>
 </div>
 
-{{-- resources/views/components/stocks/stock-chart.blade.php --}}
-<div id="{{ $chartId ?? 'stockChart' }}">
-    {{-- Chart will be rendered here by JavaScript --}}
-</div>
+{{-- Stock Chart Component --}}
+<div id="{{ $chartId ?? 'stockChart' }}"></div>
 
 @push('scripts')
-    <script>
-        document.addEventListener('livewire:load', function () {
-            const chartData = @json($data);
-            const chartColor = @json($color ?? '#8884d8');
-            const chartElementId = @json($chartId ?? 'stockChart');
+<script>
+document.addEventListener('livewire:load', function () {
+    const chartData = @json($data);
+    const chartColor = @json($color ?? '#8884d8');
+    const chartElementId = @json($chartId ?? 'stockChart');
 
-            const stockChart = echarts.init(document.getElementById(chartElementId));
+    const stockChart = echarts.init(document.getElementById(chartElementId));
 
-            const options = {
-                xAxis: {
-                    type: 'category',
-                    data: chartData.map(item => item.date)
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [
-                    {
-                        data: chartData.map(item => item.value),
-                        type: 'line',
-                        smooth: true,
-                        color: chartColor,
-                        areaStyle: {}
-                    }
-                ],
-                tooltip: {
-                    trigger: 'axis',
-                    valueFormatter: (value) => value.toFixed(2)
-                },
-                grid: {
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%',
-                    containLabel: true
-                }
-            };
+    const options = {
+        xAxis: {
+            type: 'category',
+            data: chartData.map(item => item.date)
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: chartData.map(item => item.value),
+            type: 'line',
+            smooth: true,
+            color: chartColor,
+            areaStyle: {}
+        }],
+        tooltip: {
+            trigger: 'axis',
+            valueFormatter: (value) => value.toFixed(2)
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        }
+    };
 
-            stockChart.setOption(options);
+    stockChart.setOption(options);
 
-            window.addEventListener('resize', () => {
-                stockChart.resize();
-            });
-        });
-    </script>
+    window.addEventListener('resize', () => {
+        stockChart.resize();
+    });
+});
+</script>
 @endpush
 
-{{-- resources/views/recommendations.blade.php --}}
+{{-- Main Recommendations View --}}
 <div class="space-y-6">
     <div class="flex justify-between items-center">
         <div>

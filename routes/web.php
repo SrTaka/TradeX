@@ -46,4 +46,37 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/live-data-content', [\App\Http\Controllers\LiveDataController::class, 'content'])->name('live-data.content');
 });
 
+// Dashboard and Section Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/live-data', function () {
+        return view('sections.live-data');
+    })->name('live-data');
+
+    Route::get('/summary-data', function () {
+        return view('sections.summary-data');
+    })->name('summary-data');
+
+    Route::get('/recommendations', function () {
+        return view('sections.recommendations');
+    })->name('recommendations');
+
+    Route::get('/portfolio', function () {
+        return view('sections.portfolio');
+    })->name('portfolio');
+
+    Route::get('/one-on-one', function () {
+        return view('sections.one-on-one');
+    })->name('one-on-one');
+
+    Route::get('/premium', function () {
+        return view('sections.premium');
+    })->name('premium');
+
+    Route::get('/news-updates', function () {
+        return view('sections.news-updates');
+    })->name('news-updates');
+});
+
 require __DIR__.'/auth.php';
