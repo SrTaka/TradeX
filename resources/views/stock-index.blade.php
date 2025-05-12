@@ -1,3 +1,11 @@
+{{-- Debug output --}}
+@if($latestStockData->isEmpty())
+    <div class="text-red-500">No stock data found.</div>
+@endif
+@if(empty($stock))
+    <div class="text-red-500">No stock selected for details.</div>
+@endif
+
 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class="p-6 text-gray-900">
         <!-- Stock Search -->
@@ -64,4 +72,6 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+@include('stocks.show', ['stock' => $stock]) 
