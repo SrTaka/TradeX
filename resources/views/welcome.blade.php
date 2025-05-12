@@ -124,7 +124,7 @@
                             <li>✔ Basic charts</li>
                             <li>✔ 1 watchlist</li>
                         </ul>
-                        <a href="{{ route('register') }}" class="btn-outline w-full block text-center">Sign Up Free</a>
+                        <a href="{{ route('free-trial') }}" class="btn-outline w-full block text-center">Sign Up Free</a>
                     </div>
                     <div class="pricing-card active" style="border-color:#2563eb;">
                         <h3 class="text-2xl font-bold mb-2">Pro</h3>

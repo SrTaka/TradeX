@@ -1,4 +1,10 @@
-@props(['active'])
+
+<aside x-show="sidebarOpen" 
+       @keydown.window.escape="sidebarOpen = false" 
+       class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 pt-16 z-20 transform transition-transform duration-200 ease-in-out md:translate-x-0 shadow-xl rounded-r-2xl" 
+       :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen}" 
+       x-cloak>
+       @props(['active'])
 
 <aside x-show="sidebarOpen" @keydown.window.escape="sidebarOpen = false" class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 pt-16 z-20 transform transition-transform duration-200 ease-in-out translate-x-0 md:translate-x-0 md:block shadow-xl rounded-r-2xl" :class="{'-translate-x-full': !sidebarOpen, 'block': sidebarOpen, 'md:block': true}" x-cloak>
     <div class="h-full px-5 py-6 overflow-y-auto">
@@ -73,3 +79,20 @@
 
 <!-- Mobile backdrop -->
 <div x-show="sidebarOpen" class="fixed inset-0 bg-black bg-opacity-50 z-10 md:hidden" @click="sidebarOpen = false" x-cloak></div>
+</aside>
+
+<script>
+document.addEventListener('alpine:init', () => {
+    // Initialize with localStorage value or default to true for desktop
+    Alpine.store('sidebar', {
+        open: localStorage.getItem('sidebarOpen') 
+              ? localStorage.getItem('sidebarOpen') === 'true' 
+              : window.innerWidth >= 768,
+        
+        toggle() {
+            this.open = !this.open;
+            localStorage.setItem('sidebarOpen', this.open);
+        }
+    });
+});
+</script>

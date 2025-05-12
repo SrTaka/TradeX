@@ -118,7 +118,7 @@
         <div class="bg-blue-600 text-white rounded-lg shadow p-4 text-center">
             <h2 class="text-lg font-bold">🔓 Unlock Full Access</h2>
             <p class="text-sm mt-1">Get daily stock picks, real-time insights, and more!</p>
-            <a href="/subscribe" class="mt-3 inline-block bg-white text-blue-600 font-semibold px-4 py-2 rounded">
+            <a href="{{ route('register') }}" class="mt-3 inline-block bg-white text-blue-600 font-semibold px-4 py-2 rounded">
                 Subscribe Now
             </a>
         </div>

@@ -50,7 +50,7 @@
         <script>
             document.addEventListener('alpine:init', () => {
                 Alpine.store('modals', {
-                    marketOverview: false,
+                   
                 });
             });
         </script>

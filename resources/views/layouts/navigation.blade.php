@@ -1,3 +1,4 @@
+<nav>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 fixed w-full z-10">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,4 +97,8 @@
             </div>
         </div>
     </div>
+</nav>
+    <button id="sidebar-toggle" class="md:hidden">
+        <svg class="w-6 h-6">...</svg>
+    </button>
 </nav>
