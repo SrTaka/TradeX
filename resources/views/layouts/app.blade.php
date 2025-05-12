@@ -135,6 +135,10 @@
             function openModal(modalId) {
                 const modal = document.getElementById(modalId);
                 if (modal) {
+                    // If it's the news updates modal, load content
+                    if (modalId === 'newsUpdatesModal' && typeof showNewsUpdates === 'function') {
+                        showNewsUpdates();
+                    }
                     modal.style.display = 'flex';
                     document.body.style.overflow = 'hidden'; // Prevent background scrolling
                     // If it's the live data modal, load content via AJAX

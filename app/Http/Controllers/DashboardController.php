@@ -22,7 +22,23 @@ class DashboardController extends Controller
         ->where('date', today())
         ->get();
 
-        return view('dashboard', compact('watchlists', 'latestStockData'));
+        // ZSE Top 10 symbols (example, update as needed)
+        $zseTop10Symbols = [
+            'DLTA.ZW', 'ECO.ZW', 'CBZ.ZW', 'OKZ.ZW', 'INN.ZW',
+            'BAT.ZW', 'SEED.ZW', 'OML.ZW', 'FBC.ZW', 'ZBFH.ZW'
+        ];
+        $zseTop10 = StockData::whereIn('symbol', $zseTop10Symbols)
+            ->where('date', today())
+            ->orderByRaw("FIELD(symbol, 'DLTA.ZW', 'ECO.ZW', 'CBZ.ZW', 'OKZ.ZW', 'INN.ZW', 'BAT.ZW', 'SEED.ZW', 'OML.ZW', 'FBC.ZW', 'ZBFH.ZW')")
+            ->get();
+
+        // Example: Fetch last 30 days of ZSE All Share Index
+        $zseIndexData = StockData::where('symbol', 'ZSE_ALL_SHARE')
+            ->orderBy('date')
+            ->where('date', '>=', now()->subDays(30))
+            ->get(['date', 'close']);
+
+        return view('dashboard', compact('watchlists', 'latestStockData', 'zseTop10', 'zseIndexData'));
     }
 
     public function getStockData(Request $request)

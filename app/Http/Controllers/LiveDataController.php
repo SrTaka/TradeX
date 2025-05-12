@@ -14,12 +14,25 @@ class LiveDataController extends Controller
         $watchlists = $user ? $user->watchlists()->with('stocks')->get() : collect();
         $latestStockData = StockData::latest('date')->take(20)->get();
 
-        // Get the first stock symbol from the latest stock data
-        $firstStockData = $latestStockData->first();
-        $stock = null;
-        if ($firstStockData) {
-            $stock = \App\Models\Stock::where('symbol', $firstStockData->symbol)->first();
+        // Provide dummy data if empty
+        if ($watchlists->isEmpty()) {
+            $watchlists = collect([
+                (object)[
+                    'name' => 'Demo Watchlist',
+                    'stocks' => collect([
+                        (object)['symbol' => 'DLTA.ZW'],
+                        (object)['symbol' => 'ECO.ZW'],
+                    ])
+                ]
+            ]);
         }
+        if ($latestStockData->isEmpty()) {
+            $latestStockData = collect([
+                (object)['symbol' => 'DLTA.ZW', 'open' => 10000, 'high' => 10900, 'low' => 9900, 'close' => 10800, 'volume' => 12000],
+                (object)['symbol' => 'ECO.ZW', 'open' => 10200, 'high' => 10800, 'low' => 10100, 'close' => 10700, 'volume' => 11000],
+            ]);
+        }
+        $stock = $latestStockData->first();
 
         return view('stock-index', compact('watchlists', 'latestStockData', 'stock'));
     }
