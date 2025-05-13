@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'TradeX') }}</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,25 +22,30 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body class="font-sans antialiased" style="font-family: 'Nunito', sans-serif; background: #eaf1fb;">
-        <div class="min-h-screen" style="background: #eaf1fb;">
+        <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-            
-            <!-- Sidebar -->
-            <x-sidebar />
 
-            <div class="pt-16 pl-0 md:pl-64 min-h-screen transition-all duration-200">
-                @if (isset($header))
-                    <header class="bg-white shadow">
-                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                            {{ $header }}
-                        </div>
-                    </header>
-                @endif
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
 
-                <main class="py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $slot }}
-                </main>
-            </div>
+            <!-- Page Content -->
+            <main>
+                <div class="flex">
+                    <!-- Sidebar -->
+                    <x-sidebar />
+                    
+                    <!-- Main Content -->
+                    <div class="flex-1">
+                        {{ $slot }}
+                    </div>
+                </div>
+            </main>
         </div>
 
         @stack('scripts')

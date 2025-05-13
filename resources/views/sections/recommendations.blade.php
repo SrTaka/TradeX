@@ -197,3 +197,60 @@ document.addEventListener('livewire:load', function () {
                         </p>
                     </div>
                     <div class="card-content">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            @foreach ($incomeStocks as $stock)
+                                <livewire:stocks.stock-card :stock="$stock" :key="'income-' . $loop->index" />
+                            @endforeach
+                        </div>
+
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">Why We Recommend These Stocks</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-muted-foreground">
+                                <li>Regular dividend payments</li>
+                                <li>Stable cash flow</li>
+                                <li>Consistent earnings</li>
+                                <li>Low volatility</li>
+                                <li>Investing in sectors with favorable economic outlook</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if ($activeTab === 'value')
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-zimstock-purple">
+                                <path fill-rule="evenodd" d="M12 1.5a.75.75 0 01.75.75V5h2.5a.75.75 0 010 1.5H12.75v2.75a.75.75 0 01-1.5 0V6.5H8.5a.75.75 0 010-1.5h2.5V2.25A.75.75 0 0112 1.5zM6.75 6.75a.75.75 0 011.06 0l3 3a.75.75 0 01-1.06 1.06l-3-3a.75.75 0 010-1.06zM16.19 6.75a.75.75 0 010 1.06l-3 3a.75.75 0 01-1.06-1.06l3-3a.75.75 0 011.06 0z" clip-rule="evenodd" />
+                                <path d="M6 10.5a3 3 0 116 0v3a3 3 0 11-6 0v-3zm12-3a3 3 0 116 0v6a3 3 0 11-6 0V7.5z" />
+                            </svg>
+                            Value Stock Recommendations
+                        </h3>
+                        <p class="card-description">
+                            Stocks with undervalued assets and strong fundamentals
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            @foreach ($valueStocks as $stock)
+                                <livewire:stocks.stock-card :stock="$stock" :key="'value-' . $loop->index" />
+                            @endforeach
+                        </div>
+
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">Why We Recommend These Stocks</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-muted-foreground">
+                                <li>Undervalued assets</li>
+                                <li>Strong fundamentals</li>
+                                <li>Potential for growth</li>
+                                <li>Investing in sectors with favorable economic outlook</li>
+                                <li>Investing in innovation and new product development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
