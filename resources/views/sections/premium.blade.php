@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @php
+    $slot = $slot ?? '';
     $pricingPlans = $pricingPlans ?? [
         [
             'name' => 'Basic',

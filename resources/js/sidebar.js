@@ -2,48 +2,63 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('sidebar');
     const backdrop = document.getElementById('sidebar-backdrop');
     const toggleBtn = document.getElementById('sidebar-toggle');
-    let isOpen = window.innerWidth >= 768;
 
-    // Initialize
-    updateSidebarState();
+    function isDesktop() {
+        return window.innerWidth >= 768;
+    }
+
+    function openSidebar() {
+        sidebar.classList.remove('-translate-x-full');
+        sidebar.classList.add('translate-x-0');
+        if (backdrop) backdrop.classList.remove('hidden');
+    }
+
+    function closeSidebar() {
+        sidebar.classList.add('-translate-x-full');
+        sidebar.classList.remove('translate-x-0');
+        if (backdrop) backdrop.classList.add('hidden');
+    }
+
+    function updateSidebarState() {
+        if (isDesktop()) {
+            sidebar.classList.remove('-translate-x-full');
+            sidebar.classList.add('translate-x-0');
+            if (backdrop) backdrop.classList.add('hidden');
+        } else {
+            closeSidebar();
+        }
+    }
 
     // Toggle button event
     if (toggleBtn) {
         toggleBtn.addEventListener('click', function() {
-            isOpen = !isOpen;
-            updateSidebarState();
-            localStorage.setItem('sidebarOpen', isOpen);
+            if (sidebar.classList.contains('-translate-x-full')) {
+                openSidebar();
+            } else {
+                closeSidebar();
+            }
         });
     }
 
     // Backdrop click event
     if (backdrop) {
         backdrop.addEventListener('click', function() {
-            isOpen = false;
-            updateSidebarState();
-            localStorage.setItem('sidebarOpen', isOpen);
+            closeSidebar();
         });
     }
 
     // Window resize event
     window.addEventListener('resize', function() {
-        if (window.innerWidth >= 768) {
-            isOpen = true;
-        } else {
-            isOpen = localStorage.getItem('sidebarOpen') === 'true';
-        }
         updateSidebarState();
     });
 
-    function updateSidebarState() {
-        if (isOpen) {
-            sidebar.classList.remove('-translate-x-full');
-            sidebar.classList.add('translate-x-0');
-            if (backdrop) backdrop.classList.add('hidden');
-        } else {
-            sidebar.classList.add('-translate-x-full');
-            sidebar.classList.remove('translate-x-0');
-            if (backdrop) backdrop.classList.remove('hidden');
+    // ESC key closes sidebar on mobile
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !isDesktop()) {
+            closeSidebar();
         }
-    }
+    });
+
+    // Initial state
+    updateSidebarState();
 });
