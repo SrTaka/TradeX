@@ -1,70 +1,8 @@
-{{-- Stock Card Component --}}
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title font-semibold">{{ $symbol }}</h3>
-        <p class="text-sm text-muted-foreground">{{ $name }}</p>
-    </div>
-    <div class="card-content">
-        <div class="text-2xl font-bold text-zimstock-blue">{{ number_format($price, 2) }}</div>
-        <div class="flex items-center text-sm mt-1 {{ $change >= 0 ? 'text-green-500' : 'text-red-500' }}">
-            {{ $change >= 0 ? '+' : '-' }}{{ number_format(abs($change), 2) }} ({{ number_format(abs($changePercent), 2) }}%)
-        </div>
-        @isset($dividend)
-            <div class="text-sm text-muted-foreground mt-1">Dividend Yield: {{ $dividend }}</div>
-        @endisset
-        @isset($pe)
-            <div class="text-sm text-muted-foreground mt-1">P/E Ratio: {{ $pe }}</div>
-        @endisset
-    </div>
-</div>
-
-{{-- Stock Chart Component --}}
-<div id="{{ $chartId ?? 'stockChart' }}"></div>
-
-@push('scripts')
-<script>
-document.addEventListener('livewire:load', function () {
-    const chartData = @json($data);
-    const chartColor = @json($color ?? '#8884d8');
-    const chartElementId = @json($chartId ?? 'stockChart');
-
-    const stockChart = echarts.init(document.getElementById(chartElementId));
-
-    const options = {
-        xAxis: {
-            type: 'category',
-            data: chartData.map(item => item.date)
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            data: chartData.map(item => item.value),
-            type: 'line',
-            smooth: true,
-            color: chartColor,
-            areaStyle: {}
-        }],
-        tooltip: {
-            trigger: 'axis',
-            valueFormatter: (value) => value.toFixed(2)
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        }
-    };
-
-    stockChart.setOption(options);
-
-    window.addEventListener('resize', () => {
-        stockChart.resize();
-    });
-});
-</script>
-@endpush
+@php
+    $riskTolerance = $riskTolerance ?? 'moderate';
+    $recommendedPortfolio = $recommendedPortfolio ?? [];
+    $activeTab = $activeTab ?? 'growth';
+@endphp
 
 {{-- Main Recommendations View --}}
 <div class="space-y-6">
@@ -197,3 +135,58 @@ document.addEventListener('livewire:load', function () {
                         </p>
                     </div>
                     <div class="card-content">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            @foreach ($incomeStocks as $stock)
+                                <livewire:stocks.stock-card :stock="$stock" :key="'income-' . $loop->index" />
+                            @endforeach
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">Why We Recommend These Stocks</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-muted-foreground">
+                                <li>Consistent dividend payments and yield</li>
+                                <li>Strong cash flow and financial stability</li>
+                                <li>Track record of returning value to shareholders</li>
+                                <li>Operating in mature, stable industries</li>
+                                <li>Potential for dividend growth over time</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if ($activeTab === 'value')
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-zimstock-yellow">
+                                <path fill-rule="evenodd" d="M12 1.5a.75.75 0 01.75.75V5h2.5a.75.75 0 010 1.5H12.75v2.75a.75.75 0 01-1.5 0V6.5H8.5a.75.75 0 010-1.5h2.5V2.25A.75.75 0 0112 1.5zM6.75 6.75a.75.75 0 011.06 0l3 3a.75.75 0 01-1.06 1.06l-3-3a.75.75 0 010-1.06zM16.19 6.75a.75.75 0 010 1.06l-3 3a.75.75 0 01-1.06-1.06l3-3a.75.75 0 011.06 0z" clip-rule="evenodd" />
+                                <path d="M6 10.5a3 3 0 116 0v3a3 3 0 11-6 0v-3zm12-3a3 3 0 116 0v6a3 3 0 11-6 0V7.5z" />
+                            </svg>
+                            Value Stock Recommendations
+                        </h3>
+                        <p class="card-description">
+                            Stocks trading below their intrinsic value with upside potential
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            @foreach ($valueStocks as $stock)
+                                <livewire:stocks.stock-card :stock="$stock" :key="'value-' . $loop->index" />
+                            @endforeach
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">Why We Recommend These Stocks</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-muted-foreground">
+                                <li>Undervalued based on fundamental analysis</li>
+                                <li>Strong balance sheets and low debt</li>
+                                <li>Potential for price appreciation as market recognizes value</li>
+                                <li>Stable earnings and cash flow</li>
+                                <li>Attractive risk/reward profile</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
