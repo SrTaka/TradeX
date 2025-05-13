@@ -1,8 +1,23 @@
 @props(['active'])
 
-<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 pt-16 z-20 transform transition-transform duration-200 ease-in-out shadow-xl rounded-r-2xl">
-    <div class="h-full px-5 py-6 overflow-y-auto">
-        <ul class="space-y-2">
+<!-- Sidebar Toggle Button for Mobile -->
+<div class="md:hidden fixed top-4 left-4 z-30">
+    <button id="sidebar-toggle" class="p-2 rounded-md bg-white shadow-md focus:outline-none">
+        <svg class="h-6 w-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+</div>
+
+<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 pt-8 z-20 transform -translate-x-full md:translate-x-0 md:pt-16 transition-transform duration-200 ease-in-out shadow-xl rounded-r-2xl">
+    <div class="flex flex-col h-full px-5 py-6 overflow-y-auto">
+        <!-- TradeX Logo at the Top -->
+        <div class="flex items-center justify-center mb-8">
+            <a href="{{ route('dashboard') }}">
+                <x-application-logo class="h-10 w-auto fill-current text-blue-700" />
+            </a>
+        </div>
+        <ul class="space-y-2 flex-1">
             <li>
                 <a href="{{ route('dashboard') }}" class="flex items-center p-3 text-gray-900 rounded-xl hover:bg-blue-50 transition {{ request()->routeIs('dashboard') ? 'bg-blue-100 text-blue-700 font-bold shadow' : '' }}">
                     <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,3 +95,7 @@
 
 <!-- Mobile backdrop -->
 <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden md:hidden"></div>
+
+@push('scripts')
+<script src="/js/sidebar.js"></script>
+@endpush
