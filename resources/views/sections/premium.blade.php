@@ -1,5 +1,112 @@
 @extends('layouts.app')
 
+@php
+    $pricingPlans = $pricingPlans ?? [
+        [
+            'name' => 'Basic',
+            'price' => '$0',
+            'period' => 'month',
+            'description' => 'Access to basic features and market data.',
+            'features' => ['Live market data', 'Basic portfolio tracking'],
+            'notFeatures' => ['Advanced analytics', 'One-on-one coaching', 'Premium news'],
+            'buttonText' => 'Get Started',
+            'buttonVariant' => 'default',
+            'disabled' => false,
+            'popular' => false,
+        ],
+        [
+            'name' => 'Pro',
+            'price' => '$19',
+            'period' => 'month',
+            'description' => 'Unlock advanced analytics and premium features.',
+            'features' => ['Live market data', 'Advanced analytics', 'Premium news'],
+            'notFeatures' => ['One-on-one coaching'],
+            'buttonText' => 'Upgrade',
+            'buttonVariant' => 'default',
+            'disabled' => false,
+            'popular' => true,
+        ],
+        [
+            'name' => 'Elite',
+            'price' => '$49',
+            'period' => 'month',
+            'description' => 'All features plus personal coaching and priority support.',
+            'features' => ['Live market data', 'Advanced analytics', 'Premium news', 'One-on-one coaching'],
+            'notFeatures' => [],
+            'buttonText' => 'Go Elite',
+            'buttonVariant' => 'default',
+            'disabled' => false,
+            'popular' => false,
+        ],
+    ];
+    $testimonials = $testimonials ?? [
+        [
+            'quote' => 'TradeX Premium gave me the confidence to make smarter investment decisions. Highly recommended!',
+            'name' => 'Alice M.',
+            'role' => 'Retail Investor',
+            'location' => 'Harare',
+        ],
+        [
+            'quote' => 'The analytics and one-on-one coaching are game changers for my portfolio.',
+            'name' => 'Brian K.',
+            'role' => 'Entrepreneur',
+            'location' => 'Bulawayo',
+        ],
+        [
+            'quote' => 'I love the premium news and insights. Worth every cent!',
+            'name' => 'Chipo D.',
+            'role' => 'Finance Student',
+            'location' => 'Mutare',
+        ],
+    ];
+    $featureComparisons = $featureComparisons ?? [
+        [
+            'name' => 'Live market data',
+            'basic' => '✔️',
+            'pro' => '✔️',
+            'elite' => '✔️',
+        ],
+        [
+            'name' => 'Advanced analytics',
+            'basic' => '❌',
+            'pro' => '✔️',
+            'elite' => '✔️',
+        ],
+        [
+            'name' => 'Premium news',
+            'basic' => '❌',
+            'pro' => '✔️',
+            'elite' => '✔️',
+        ],
+        [
+            'name' => 'One-on-one coaching',
+            'basic' => '❌',
+            'pro' => '❌',
+            'elite' => '✔️',
+        ],
+        [
+            'name' => 'Priority support',
+            'basic' => '❌',
+            'pro' => '❌',
+            'elite' => '✔️',
+        ],
+    ];
+    $frequentlyAskedQuestions = $frequentlyAskedQuestions ?? [
+        [
+            'question' => 'What is included in the Pro plan?',
+            'answer' => 'The Pro plan includes advanced analytics, premium news, and all features from the Basic plan.',
+        ],
+        [
+            'question' => 'Can I upgrade or downgrade my plan at any time?',
+            'answer' => 'Yes, you can change your plan at any time from your account settings.',
+        ],
+        [
+            'question' => 'Is there a free trial for premium features?',
+            'answer' => 'Yes, we offer a 7-day free trial for new users to experience premium features.',
+        ],
+    ];
+@endphp
+
 @section('content')
 <div class="space-y-10">
     <div class="text-center">

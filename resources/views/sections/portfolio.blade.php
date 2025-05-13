@@ -1,5 +1,35 @@
 {{-- resources/views/portfolio.blade.php --}}
 @php
+    $portfolioStocks = $portfolioStocks ?? [
+        [
+            'symbol' => 'DLTA',
+            'name' => 'Delta Corp',
+            'shares' => 100,
+            'avgCost' => 280.50,
+            'currentPrice' => 312.50,
+            'marketValue' => 31250.00,
+            'gain' => 3200.00,
+        ],
+        [
+            'symbol' => 'ECOZ',
+            'name' => 'Econet Wireless',
+            'shares' => 200,
+            'avgCost' => 165.75,
+            'currentPrice' => 178.25,
+            'marketValue' => 35650.00,
+            'gain' => 2500.00,
+        ],
+        [
+            'symbol' => 'INNH',
+            'name' => 'Innscor Africa',
+            'shares' => 50,
+            'avgCost' => 400.00,
+            'currentPrice' => 423.00,
+            'marketValue' => 21150.00,
+            'gain' => 1150.00,
+        ],
+    ];
+
     $totalValue = collect($portfolioStocks)->sum('marketValue');
     $totalGain = collect($portfolioStocks)->sum('gain');
     $totalGainPercent = ($totalGain / ($totalValue - $totalGain)) * 100;
