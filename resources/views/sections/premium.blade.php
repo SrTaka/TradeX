@@ -109,7 +109,18 @@
 @endphp
 
 @section('content')
-<div class="space-y-10">
+<x-app-layout>
+    <div class="py-6 md:pl-64">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-10">
+                @yield('premium-content')
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+@endsection
+
+@section('premium-content')
     <div class="text-center">
         <h2 class="text-4xl font-bold text-zimstock-blue">Premium Features</h2>
         <p class="text-xl text-muted-foreground mt-2">
@@ -257,5 +268,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

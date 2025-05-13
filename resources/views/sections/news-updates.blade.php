@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="pt-20 pb-6">
+    <div class="pt-20 pb-6 md:pl-64">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="space-y-8">
                 <!-- Header Section -->

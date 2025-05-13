@@ -50,7 +50,10 @@
         <div class="relative min-h-screen bg-gray-100">
             <!-- Navigation -->
             <nav class="flex justify-between items-center max-w-7xl mx-auto py-6 px-4">
-                <div class="text-2xl font-extrabold" style="color:#2563eb;">TradeX</div>
+                <div class="flex flex-col">
+                    <div class="text-2xl font-extrabold" style="color:#2563eb;">TradeX</div>
+                    <div class="text-sm italic" style="color:#6b7280;">by trade advisory</div>
+                </div>
                 <div class="flex gap-8 items-center">
                     <a href="#features" class="nav-link">Features</a>
                     <a href="#pricing" class="nav-link">Pricing</a>
@@ -59,6 +62,9 @@
                 <div class="flex gap-2">
                     <a href="{{ route('login') }}" class="btn-outline" style="font-size:1rem;padding:0.5rem 1.5rem;">Log in</a>
                     <a href="{{ route('register') }}" class="btn-blue" style="font-size:1rem;padding:0.5rem 1.5rem;">Sign up</a>
+                </div>
+                <div class="absolute bottom-4 right-4 text-sm text-gray-500">
+                    © 2024 Trade Advisory
                 </div>
             </nav>
 
@@ -155,12 +161,11 @@
             </section>
             <section id="about" class="py-20" style="background: #f6f8fb;">
                 <h2 class="text-4xl font-extrabold text-center mb-2">About TradeX</h2>
-                <p class="text-center text-2xl text-gray-400 mb-12">Designed by traders, for traders</p>
+                <p class="text-center text-2xl text-gray-400 mb-12">Your smart guide to investing on the ZSE</p>
                 <div class="max-w-3xl mx-auto text-lg text-gray-900 mb-20" style="line-height:2;">
-                    TradeX was founded by a team of financial analysts, data scientists, and traders who recognized the need for a more accessible and powerful trading data platform.<br>
-                    Our mission is to provide traders and investors of all levels with the tools and data they need to make informed decisions in the market, without the complexity and high costs typically associated with professional trading platforms.<br>
-                    With TradeX, you get reliable, real-time market data combined with intuitive visualization tools and comprehensive historical analysis capabilities, all accessible through a clean, modern interface.<br>
-                    Whether you're a day trader, swing trader, or long-term investor, TradeX provides the insights you need when you need them.
+                    TradeX is a data-driven platform designed to help investors and traders discover opportunities on the Zimbabwe Stock Exchange (ZSE).  
+                    We provide real-time market data, historical trends, and end-of-day updates — along with expert-backed recommendations to help you know what to buy, when to buy, and why.  
+                    Whether you're a first-time investor or an experienced trader, TradeX gives you the insights you need to make confident decisions in the local market
                 </div>
             </section>
             <section class="py-20 bg-white">

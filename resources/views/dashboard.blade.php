@@ -1,7 +1,6 @@
 <x-app-layout>
-    <div class="p-8">
-        <h1 class="text-2xl font-bold mb-6">Welcome to your Dashboard</h1>
+    <x-section-container title="Welcome to your Dashboard">
         @include('sections.summary-data')
-    </div>
+    </x-section-container>
 </x-app-layout>
 

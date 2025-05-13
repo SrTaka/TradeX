@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="py-6">
+    <div class="py-6 md:pl-64">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             @php
                 $riskTolerance = $riskTolerance ?? 'moderate';
