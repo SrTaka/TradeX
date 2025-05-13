@@ -64,8 +64,8 @@
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 bg-gray-200 rounded-full"></div>
                             <div class="ml-4">
-                                <h4 class="text-lg font-semibold">John Smith</h4>
-                                <p class="text-sm text-gray-500">Senior Investment Advisor</p>
+                                <h4 class="text-lg font-semibold">Tawananyasha Ziyambe</h4>
+                                <p class="text-sm text-gray-500">Chief Technological Officer</p>
                             </div>
                         </div>
                         <p class="text-sm text-gray-600 mb-4">Specializes in portfolio management and market analysis with over 15 years of experience.</p>
@@ -81,8 +81,8 @@
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 bg-gray-200 rounded-full"></div>
                             <div class="ml-4">
-                                <h4 class="text-lg font-semibold">Sarah Johnson</h4>
-                                <p class="text-sm text-gray-500">Risk Management Specialist</p>
+                                <h4 class="text-lg font-semibold">Tanatswa Nguruza</h4>
+                                <p class="text-sm text-gray-500">Customer Support Manager</p>
                             </div>
                         </div>
                         <p class="text-sm text-gray-600 mb-4">Expert in risk assessment and investment strategies with a focus on long-term growth.</p>
@@ -98,8 +98,8 @@
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 bg-gray-200 rounded-full"></div>
                             <div class="ml-4">
-                                <h4 class="text-lg font-semibold">Michael Chen</h4>
-                                <p class="text-sm text-gray-500">Market Analyst</p>
+                                <h4 class="text-lg font-semibold">Anashe Masomeke</h4>
+                                <p class="text-sm text-gray-500">Chief Marketing Officer</p>
                             </div>
                         </div>
                         <p class="text-sm text-gray-600 mb-4">Specializes in technical analysis and market trends with a strong focus on emerging markets.</p>
